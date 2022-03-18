@@ -20,6 +20,7 @@ function SearchWeather() {
         fetchWeather();
     }, [search])
     
+    //Event Handler for City Search
     const handleSubmit = (event) => {
         event.preventDefault();
         setSearch(input);
