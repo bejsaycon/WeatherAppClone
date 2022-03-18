@@ -65,7 +65,7 @@ function SearchWeather() {
         second: '2-digit'
     })
 
-    console.log(d,date,year,month,day);
+    
   return (
     <div>
       <div className="container mt-5">
