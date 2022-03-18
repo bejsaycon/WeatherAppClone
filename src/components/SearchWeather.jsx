@@ -20,6 +20,27 @@ function SearchWeather() {
         
         fetchWeather();
     }, [])
+
+    let emoji = null;
+    if(data.weather[0].main !== undefined){
+        if(data.weather[0].main ==="Clouds"){
+            emoji = "fa-cloud";
+        } else if(data.weather[0].main ==="Thunderstorm"){
+            emoji = "fa-bolt";
+        } else if(data.weather[0].main ==="Drizzle"){    
+            emoji = "fa-cloud-drizzle";
+        } else if(data.weather[0].main ==="Rain"){
+            emoji = "fa-cloud-showers-heavy";
+        } else if(data.weather[0].main ==="Snow"){
+            emoji = "fa-snowflake";
+        } else {
+            emoji = "fa-smog";
+        }
+    } else {
+        return (
+            <div>Loading ...</div>
+        )
+    }
     
     //flooring temperature data to 2decimal places
     let temp = (data.main.temp - 273.15).toFixed(2);
@@ -58,7 +79,7 @@ function SearchWeather() {
                   Thursday, March 18, 2022
                 </p>
                 <hr />
-                <i className="fas fa-cloud fa-4x"></i>
+                <i className={`fas ${emoji} fa-4x`}></i>
                 <h1 className="fw-bolder mb-5">{temp} &deg;C</h1>
                 <p className="lead fw-bolder mb-0">{data.weather[0].main}</p>
                 <p className="lead">{temp_min}&deg;C | {temp_max}&deg;C</p>
