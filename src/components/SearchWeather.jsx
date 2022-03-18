@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 function SearchWeather() {
-    const [search, setSearch] = useState("new york");
+    const [search, setSearch] = useState("london");
     const [data, setData] = useState([]);
     const [input, setinput] = useState("");
     let componentMounted = true;
@@ -21,6 +21,10 @@ function SearchWeather() {
         fetchWeather();
     }, [])
     
+    //flooring temperature data to 2decimal places
+    let temp = (data.main.temp - 273.15).toFixed(2);
+    let temp_min = (data.main.temp_min - 273.15).toFixed(2);
+    let temp_max = (data.main.temp_max - 273.15).toFixed(2);
 
   return (
     <div>
@@ -55,9 +59,9 @@ function SearchWeather() {
                 </p>
                 <hr />
                 <i className="fas fa-cloud fa-4x"></i>
-                <h1 className="fw-bolder mb-5">33.06 &deg;C</h1>
-                <p className="lead fw-bolder mb-0">Cloud</p>
-                <p className="lead">30.01&deg;C | 35.23&deg;C</p>
+                <h1 className="fw-bolder mb-5">{temp} &deg;C</h1>
+                <p className="lead fw-bolder mb-0">{data.weather[0].main}</p>
+                <p className="lead">{temp_min}&deg;C | {temp_max}&deg;C</p>
                 </div>
               </div>
             </div>
